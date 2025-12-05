@@ -43,7 +43,7 @@ The site is designed with a clean, minimal, and modern layout using **HTML**, **
 ---
 
 ## Live Preview
-[View My Portfolio](https://sage-roe.github.io/portfolio/)
+[View My Portfolio](https://my-portfolio-mauve-three-17.vercel.app)
 
 ---
 
