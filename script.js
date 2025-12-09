@@ -1,25 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const menuBtn = document.querySelector('.menu-btn');
-  const navLinks = document.querySelector('.nav-links');
+  const menuCheckbox = document.getElementById('click');
+  const navLinks = document.querySelectorAll('nav ul li a');
 
-  const closeMenu = () => {
-    navLinks?.classList.remove('is-open');
-    menuBtn?.setAttribute('aria-expanded', 'false');
-  };
-
-  menuBtn?.addEventListener('click', () => {
-    const isOpen = navLinks?.classList.toggle('is-open');
-    menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    menuBtn.querySelector('i')?.classList.toggle('open', isOpen);
+  // Close mobile menu after clicking a link
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (menuCheckbox) menuCheckbox.checked = false;
+    });
   });
 
-  navLinks?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
+  // Reset menu state on resize to desktop
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 920) {
-      closeMenu();
+    if (window.innerWidth > 920 && menuCheckbox) {
+      menuCheckbox.checked = false;
     }
   });
 });
