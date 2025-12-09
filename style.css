@@ -88,9 +88,20 @@ nav .logo { color: var(--text); font-size: 30px; font-weight: 700; letter-spacin
 nav .logo span { color: var(--accent); }
 nav .logo a { color: inherit; }
 nav .container { padding: 0 8px; }
-nav .menu-btn i { color: var(--text); font-size: 30px; cursor: pointer; display: none; }
-nav ul { display: flex; gap: 10px; align-items: center; transition: all .3s ease; }
-nav ul li a {
+nav .menu-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    display: none;
+}
+nav .menu-btn i { color: var(--text); font-size: 30px; }
+nav ul.nav-links { display: flex; gap: 10px; align-items: center; transition: all .3s ease; }
+nav ul.nav-links li a {
     color: var(--text);
     font-size: 15px;
     font-weight: 600;
@@ -99,7 +110,7 @@ nav ul li a {
     border: 1px solid transparent;
     transition: all .2s ease;
 }
-nav ul li a.active, nav ul li a:hover {
+nav ul.nav-links li a.active, nav ul.nav-links li a:hover {
     color: var(--text);
     background: linear-gradient(120deg, var(--accent-2), var(--accent));
     border-color: transparent;
@@ -478,21 +489,27 @@ input[type=\"checkbox\"] { display: none; }
 }
 
 @media (max-width: 920px) {
-    nav .menu-btn i { display: block; }
-    nav ul {
+    nav .menu-btn { display: grid; }
+    nav ul.nav-links {
         position: absolute;
-        top: 74px;
-        left: -120%;
+        top: 78px;
+        left: 0;
+        right: 0;
         background-color: var(--surface);
-        width: 100%;
-        padding: 12px 0 20px;
+        padding: 12px 0 16px;
         flex-direction: column;
         border-bottom: 1px solid var(--border);
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
     }
-
-    #click:checked ~ ul { left: 0; }
-    nav ul li { margin: 6px 0; width: 100%; text-align: center; }
-    nav ul li a { display: block; font-size: 16px; margin: 0 auto; width: fit-content; }
+    nav ul.nav-links.is-open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    nav ul.nav-links li { margin: 6px 0; width: 100%; text-align: center; }
+    nav ul.nav-links li a { display: block; font-size: 16px; margin: 0 auto; width: fit-content; }
 }
 
 @media (max-width: 640px) {
